@@ -17,6 +17,14 @@ updates:
       - dependency-name: "trouble-host"
         update-types:
           ["version-update:semver-minor", "version-update:semver-major"]
+      # esp-alloc >=0.10 depends on esp-sync 0.3, while esp-rtos 0.2 and
+      # esp-hal ~1.0 still pull esp-sync 0.1. Both copies land in the tree and
+      # the 0.3 one gets no chip feature, so its build script aborts with
+      # "Expected exactly one of the following features to be enabled".
+      # Pin to the 0.9.x line until the esp-hal ~1.1 bump.
+      - dependency-name: "esp-alloc"
+        update-types:
+          ["version-update:semver-minor", "version-update:semver-major"]
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
